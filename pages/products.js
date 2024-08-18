@@ -12,7 +12,7 @@ export default function Products() {
   }, []);
   return (
     <Layout>
-      <Link className="btn-primary " href={'/products/new'}>Add new product</Link>
+      <Link className="btn-primary " href={'/products/new'}>Add Product</Link>
       <table className="basic border-spacing-2  mt-2">
         <thead>
           <tr>
