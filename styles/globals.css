@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+img {
+  max-height: 100%;
+}
+input,
+textarea,
+select {
+  @apply border border-gray-200 rounded-sm px-1 w-full py-2 px-3;
+  @apply mb-2;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  @apply border-blue-900;
+}
+h1 {
+  @apply text-gray-800 mb-4 text-xl;
+}
+label {
+  @apply text-gray-600 text-sm;
+}
+.btn-primary {
+  @apply bg-primary text-white px-4 py-1 rounded-sm shadow-sm;
+}
+table.basic {
+  @apply w-full bg-white rounded-sm shadow-md;
+}
+table.basic thead tr td,
+table.basic thead tr th {
+  @apply text-sm text-gray-600 uppercase border-b border-gray-200 px-4 py-2;
+}
+table.basic tr td {
+  @apply px-4 py-1;
+}
+table.basic a {
+  @apply px-4 rounded-sm inline-flex mx-1 items-center gap-1 text-sm py-1;
+}
+.btn-default,
+.btn-red {
+  @apply px-4 py-1 rounded-md;
+}
+.btn-red {
+  @apply bg-red-200 text-red-600 px-4 py-1 rounded-sm shadow-sm;
+}
+.btn-default {
+  @apply bg-white text-gray-800 px-4 py-1 rounded-sm border border-gray-200 shadow-sm;
+}
+
+.deewall_logp {
+  color: #d9121f;
+  text-decoration: none;
+  position: relative;
+  font-size: 1.3rem;
+  font-weight: 500;
+  z-index: 100;
+}
+
+.sideBar_container {
+  height: 100vh;
+  min-width: 15vw;
+}
+
+.bg-deepshadow {
+  background: #f8d5d73a;
+}
+.text-danger {
+  color: #d9121f;
+}
+.properties_checks_container {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.properties_check {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+}
+.properties_check input {
+  width: fit-content;
+  align-content: center;
+  margin: 1rem;
+}
