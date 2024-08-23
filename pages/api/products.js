@@ -7,7 +7,7 @@ export default async function handle(req, res) {
   console.log("san sa na na na nn", method)
 
   await mongooseConnect();
-  // await isAdminRequest(req,res);
+  // await isAdminRequest(req, res);
   if (method === 'GET') {
     if (req.query?.id) {
       res.json(await Product.findOne({ _id: req.query.id }));

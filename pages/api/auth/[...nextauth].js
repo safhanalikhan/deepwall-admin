@@ -1,12 +1,12 @@
-import NextAuth, {getServerSession} from 'next-auth'
+import NextAuth, { getServerSession } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
-import {MongoDBAdapter} from "@next-auth/mongodb-adapter";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/mongodb";
-
+import Swal from 'sweetalert2';
 const adminEmails = ['reply.portray@gmail.com'];
 
 export const authOptions = {
-  secret: process.env.SECRET,
+  // secret: process.env.SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
@@ -15,10 +15,15 @@ export const authOptions = {
   ],
   adapter: MongoDBAdapter(clientPromise),
   callbacks: {
-    session: ({session,token,user}) => {
+    session: ({ session, token, user }) => {
       if (adminEmails.includes(session?.user?.email)) {
         return session;
       } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
         return false;
       }
     },
@@ -27,8 +32,9 @@ export const authOptions = {
 
 export default NextAuth(authOptions);
 
-export async function isAdminRequest(req,res) {
-  const session = await getServerSession(req,res,authOptions);
+export async function isAdminRequest(req, res) {
+  const session = await getServerSession(req, res, authOptions);
+  console.log("session?.user?.email", session?.user?.email)
   if (!adminEmails.includes(session?.user?.email)) {
     res.status(401);
     res.end();

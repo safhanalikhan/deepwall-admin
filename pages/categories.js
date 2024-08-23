@@ -173,26 +173,31 @@ function Categories({ swal }) {
           <thead>
             <tr>
               <td>Category name</td>
-              <td>Parent category</td>
-              <td></td>
+              {/* <td>Parent category</td> */}
+              {/* <td></td> */}
             </tr>
           </thead>
           <tbody>
             {categories.length > 0 && categories.map(category => (
               <tr key={category._id}>
-                <td>{category.name}</td>
-                <td>{category?.parent?.name}</td>
-                <td>
+                <td style={{ display: "flex", gap: "5px" }} >
+                  <div style={{ flex: 1 }}>{category.name}</div>
                   <button
                     onClick={() => editCategory(category)}
                     className="btn-default mr-1"
                   >
-                    Edit
+                    <i class="bi bi-pen"></i>
                   </button>
                   <button
                     onClick={() => deleteCategory(category)}
-                    className="btn-red">Delete</button>
+                    className="btn-red">
+                    <i class="bi bi-trash"></i>
+                  </button>
                 </td>
+                {/* <td>{category?.parent?.name}</td> */}
+                {/* <td>
+                  
+                </td> */}
               </tr>
             ))}
           </tbody>
