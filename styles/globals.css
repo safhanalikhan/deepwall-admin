@@ -168,6 +168,42 @@ table.basic a {
   z-index: 100;
 }
 
+.Custom-properties {
+  display: flex;
+  /* align-items: flex-end; */
+  justify-content: flex-end;
+  flex-direction: column;
+  margin: 2rem 0;
+}
+.add-property-con {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0%;
+  margin: 0.5rem 0%;
+}
+
+.add-property-con h1 span {
+  font-size: medium;
+}
+
+.property-container .property-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0%;
+}
+.property-container .property-header .Sub-properties {
+  background-color: rgba(0, 128, 0, 0.5);
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+.add-property-btn {
+  width: max-content;
+  padding: auto 3rem;
+}
+
 @media screen and (max-width: 576px) {
   .SingInSec-box {
     padding: 1rem 2rem;
