@@ -25,10 +25,10 @@ export default function Products() {
               <td style={{ display: "flex", gap: "5px" }} >
                 <div style={{ flex: 1 }}  >{product.title}</div>
                 <Link className="btn-default" href={'/products/edit/' + product._id}>
-                  <i class="bi bi-pen"></i>
+                  <i className="bi bi-pen"></i>
                 </Link>
                 <Link className="btn-red" href={'/products/delete/' + product._id}>
-                  <i class="bi bi-trash"></i>
+                  <i className="bi bi-trash"></i>
                 </Link>
               </td>
               {/* <td> */}
