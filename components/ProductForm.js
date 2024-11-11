@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import Spinner from "@/components/Spinner";
 import { ReactSortable } from "react-sortablejs";
-
+import AddCustomProperties from "./AddCustomProperties";
+import PropertyManager from "./PropertyManager";
 export default function ProductForm({
   _id,
   title: existingTitle,
@@ -24,7 +25,8 @@ export default function ProductForm({
   const [goToProducts, setGoToProducts] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [properties, setProperties] = useState();
+  const [allProperties, setAllProperties] = useState(assignedProperties || false);
+  const propertiesToFill = [];
 
   const router = useRouter();
   useEffect(() => {
@@ -35,6 +37,9 @@ export default function ProductForm({
     });
   }, []);
 
+  function getPropertyFromChild(pro) {
+    setAllProperties(pro)
+  }
 
   // useEffect(() => { console.log('----------------------------------', properties) }, [properties])
 
@@ -46,7 +51,7 @@ export default function ProductForm({
       price,
       images,
       category,
-      properties,
+      properties: allProperties,
     };
     if (_id) {
       //update
@@ -87,35 +92,38 @@ export default function ProductForm({
     });
   }
 
-  const propertiesToFill = [];
-  if (categories.length > 0 && category) {
-    let catInfo = categories.find(({ _id }) => _id === category);
-    propertiesToFill.push(...catInfo.properties);
-    while (catInfo?.parent?._id) {
-      const parentCat = categories.find(
-        ({ _id }) => _id === catInfo?.parent?._id
-      );
-      propertiesToFill.push(...parentCat.properties);
-      catInfo = parentCat;
-    }
-  }
+  // useEffect(() => {
+  //   if (categories.length > 0 && category) {
+  //     let catInfo = categories.find(({ _id }) => _id === category);
+  //     propertiesToFill.push(...catInfo?.properties);
+  //     while (catInfo?.parent?._id) {
+  //       const parentCat = categories.find(
+  //         ({ _id }) => _id === catInfo?.parent?._id
+  //       );
+  //       propertiesToFill.push(...parentCat.properties);
+  //       catInfo = parentCat;
+  //     }
+  //   }
 
-  function addProperty() {
-    setProperties({ size: true, border: true })
-  }
-  function handlePropertyValuesChange(property, key) {
-    if (key === 'border') {
-      setProperties({ ...properties, border: !property });
-      // setPropertiesBorder(!property)
-    } else {
-      setProperties({ ...properties, size: !property });
-      // setPropertiesSize()
-    }
-    console.log('properties', properties)
-  }
-  function removeProperty() {
-    setProperties();
-  }
+  // }, [])
+
+
+  // function addProperty() {
+  //   setProperties({ size: true, border: true })
+  // }
+  // function handlePropertyValuesChange(property, key) {
+  //   if (key === 'border') {
+  //     setProperties({ ...properties, border: !property });
+  //     // setPropertiesBorder(!property)
+  //   } else {
+  //     setProperties({ ...properties, size: !property });
+  //     // setPropertiesSize()
+  //   }
+  //   console.log('properties', properties)
+  // }
+  // function removeProperty() {
+  //   setProperties();
+  // }
   return (
     <form onSubmit={saveProduct}>
       <label>Product name</label>
@@ -225,10 +233,10 @@ export default function ProductForm({
             Green
           </label>
         </div>
-      </div> */}
-      <div className="mb-2">
-        <label className="block">Properties</label>
-        <button
+      </div>
+      <div className="mt-4">
+        <h3 className="block  ">Properties</h3>
+         <button
           onClick={addProperty}
           type="button"
           className="btn-default text-sm mb-2">
@@ -265,9 +273,12 @@ export default function ProductForm({
               Remove
             </button>
           </div>
-        }
-      </div>
 
+
+        }
+      </div> */}
+      {/* <AddCustomProperties /> */}
+      <PropertyManager allProperties={allProperties} setAllProperties={getPropertyFromChild} />
       <button type="submit" className="btn-primary">
         Save
       </button>
