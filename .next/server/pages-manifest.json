@@ -2,7 +2,18 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/products": "pages/products.js",
   "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/": "pages/index.js"
+  "/api/categories": "pages/api/categories.js",
+  "/api/hello": "pages/api/hello.js",
+  "/api/orders": "pages/api/orders.js",
+  "/api/products": "pages/api/products.js",
+  "/categories": "pages/categories.html",
+  "/orders": "pages/orders.html",
+  "/": "pages/index.html",
+  "/products": "pages/products.html",
+  "/products/delete/[...id]": "pages/products/delete/[...id].html",
+  "/products/new": "pages/products/new.html",
+  "/products/edit/[...id]": "pages/products/edit/[...id].html",
+  "/api/upload": "pages/api/upload.js",
+  "/404": "pages/404.html"
 }
